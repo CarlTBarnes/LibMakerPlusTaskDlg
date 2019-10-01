@@ -1,0 +1,19 @@
+# Folders
+obj/
+map/
+_bak_/
+GitHide/
+
+# Compiled Object files
+
+# Compiled Dynamic libraries
+
+# Compiled Static libraries
+
+*.cache
+Cla*.dll
+
+# Other Files
+*.bak
+*.log
+*.ini

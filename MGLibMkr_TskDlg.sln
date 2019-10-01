@@ -1,0 +1,27 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+# Clarion 2.1.0.2447
+Project("{12B76EC0-1D7B-4FA7-A7D0-C524288B48A1}") = "MGLibMkr_TskDlg", "MGLibMkr_TskDlg.cwproj", "{B49A1FC7-27F6-43B0-BC60-0062F327E8D6}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "INC Files", "INC Files", "{347B09C0-5C5B-4F8C-BD6A-03A12FE94F88}"
+	ProjectSection(SolutionItems) = postProject
+		CBTaskDlg.CLW = CBTaskDlg.CLW
+		CBTaskDlg.INC = CBTaskDlg.INC
+		CBTaskDlgDef.INC = CBTaskDlgDef.INC
+		CBWString.CLW = CBWString.CLW
+		CBWString.INC = CBWString.INC
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B49A1FC7-27F6-43B0-BC60-0062F327E8D6}.Debug|Win32.Build.0 = Debug|Win32
+		{B49A1FC7-27F6-43B0-BC60-0062F327E8D6}.Debug|Win32.ActiveCfg = Debug|Win32
+		{B49A1FC7-27F6-43B0-BC60-0062F327E8D6}.Release|Win32.Build.0 = Release|Win32
+		{B49A1FC7-27F6-43B0-BC60-0062F327E8D6}.Release|Win32.ActiveCfg = Release|Win32
+	EndGlobalSection
+EndGlobal
