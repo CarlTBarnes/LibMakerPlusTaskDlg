@@ -28,7 +28,9 @@ hProcessHeap LONG         !Does not change so just get once
     GetLastError(),long,pascal,dll(1)                        
         END        
         MODULE('RTL')
-LenFastClip PROCEDURE(CONST *STRING Text2Measure),LONG,NAME('Cla$FASTCLIP')  ! LenFastClip=len(clip(  C10
+!04/27/22 out: LenFastClip PROCEDURE(CONST *STRING Text2Measure),LONG,NAME('Cla$FASTCLIP')  ! LenFastClip=len(clip(  C10
+!              In Release builds using this sometimes stuck a Null in byte 1 of the string (I think)
+!              It is an undocumted RTL function so best to avoid
         END
     END
 
@@ -180,7 +182,7 @@ dwBytes long
 dwWideChrs  long,auto
 ptrWideStr  long
   CODE
-  sLen=CHOOSE(~bClip,size(str),LenFastClip(str))
+  sLen=CHOOSE(~bClip,SIZE(str),LEN(CLIP(str)))   !04/27/22 was: sLen=CHOOSE(~bClip,size(str),LenFastClip(str))
   IF ~sLen THEN 
      IF bClip<>2 THEN RETURN 0.       !Pass 2 for a ' ' string always
      sRef &= sSpace ; sLen=1          !If Length passed is Zero below MB2WC fails so assure at least a space
@@ -222,7 +224,8 @@ ptrWideStr  long
   CODE
     !Thought about calling MultiByteToWideChar() here with the STRING but then WStr would not have ending <0,0> w/o adding it
     !probably worth considering since there are so many STRINGs. Try it with my little class first
-    sLen=CHOOSE(~bClip,size(str),LenFastClip(str))
+    
+    sLen=CHOOSE(~bClip,SIZE(str),LEN(CLIP(str)))   !04/27/22 was: sLen=CHOOSE(~bClip,size(str),LenFastClip(str))
     IF sLen=0 THEN RETURN 0.                       !Blank input returns 0 null pointer
     sz &= new cstring(sLen + 1)
 ?   assert(~sz &= null)
@@ -290,7 +293,7 @@ sz      &cstring
 sLen    long,auto
 dwBytes long
   CODE
-  sLen=CHOOSE(~bClip,size(str),LenFastClip(str))
+  sLen=CHOOSE(~bClip,SIZE(str),LEN(CLIP(str)))  !04/27/22 was: sLen=CHOOSE(~bClip,size(str),LenFastClip(str))
   IF ~sLen THEN 
      IF bClip=2 AND SIZE(str) THEN sLen=1 ELSE RETURN 0.       !Pass 2 for a ' ' string always
   END
@@ -321,7 +324,7 @@ dwBytes long
 dwWideChrs  long,auto
 
   CODE
-  sLen=CHOOSE(~bClip,size(str),LenFastClip(str))
+  sLen=CHOOSE(~bClip,SIZE(str),LEN(CLIP(str)))    !04/27/22 was: sLen=CHOOSE(~bClip,size(str),LenFastClip(str))
   IF ~sLen THEN 
      IF bClip<>2 THEN RETURN 0.       !Pass 2 for a ' ' string always
      sRef &= sSpace ; sLen=1          !If Length passed is Zero below MB2WC fails so assure at least a space
